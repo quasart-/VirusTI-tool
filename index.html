@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virus TI Snow - Program Change Calculator<></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <style>
+    html {
+      font-family: Helvetica;
+      padding: 1em 3em;
+    }
+    form {
+      background-color: #F6F6F6;
+      padding: 1em;
+      margin: 1em auto;
+      display: inline-block;
+    }
+  </style>
+  <script>
+
+    $(document).ready( function() {
+      display_result();
+
+      $("input").change( function () {
+        display_result();
+      });
+    });
+
+    function display_result() {
+      var bank   = $('input:radio[name=bank]:checked').val();
+      var page   = $('input:radio[name=page]:checked').val();
+      var preset = $('input:radio[name=preset]:checked').val();
+
+      var bank_select = Math.floor(bank/2);
+      var program_change = (bank%2)*64 + page*8 + preset*1;
+
+      $("#result").html(
+        "Bank Select (CC#32): " + bank_select +
+        "<br/>" +
+        "Program Change: " + program_change );
+    };
+
+  </script>
+</head>
+<body>
+  <h1>Virus TI Snow<br><small>Program Change Calculator</small></h1>
+  <form>
+    <!--label><input type='radio' name='bank' value='8'></input></label>
+    <label><input type='radio' name='bank' value='9'></input></label>
+    <label><input type='radio' name='bank' value='10'></input></label>
+    <label><input type='radio' name='bank' value='11'></input></label>
+    <label><input type='radio' name='bank' value='12'></input></label>
+    <label><input type='radio' name='bank' value='13'></input></label>
+    <label><input type='radio' name='bank' value='14'></input></label>
+    <label><input type='radio' name='bank' value='15'></input></label>
+    <br/-->
+    <label><input type='radio' name='bank' value='0'></input></label>
+    <label><input type='radio' name='bank' value='1'></input></label>
+    <label><input type='radio' name='bank' value='2'></input></label>
+    <label><input type='radio' name='bank' value='3'></input></label>
+    <label><input type='radio' name='bank' value='4'></input></label>
+    <label><input type='radio' name='bank' value='5'></input></label>
+    <label><input type='radio' name='bank' value='6'></input></label>
+    <label><input type='radio' name='bank' value='7'></input></label>
+    <hr/>
+    <label><input type='radio' name='page' value='0'></input></label>
+    <label><input type='radio' name='page' value='1'></input></label>
+    <label><input type='radio' name='page' value='2'></input></label>
+    <label><input type='radio' name='page' value='3'></input></label>
+    <label><input type='radio' name='page' value='4'></input></label>
+    <label><input type='radio' name='page' value='5'></input></label>
+    <label><input type='radio' name='page' value='6'></input></label>
+    <label><input type='radio' name='page' value='7'></input></label>
+    <br/>
+    <label><input type='radio' name='preset' value='0'></input></label>
+    <label><input type='radio' name='preset' value='1'></input></label>
+    <label><input type='radio' name='preset' value='2'></input></label>
+    <label><input type='radio' name='preset' value='3'></input></label>
+    <label><input type='radio' name='preset' value='4'></input></label>
+    <label><input type='radio' name='preset' value='5'></input></label>
+    <label><input type='radio' name='preset' value='6'></input></label>
+    <label><input type='radio' name='preset' value='7'></input></label>
+  </form>
+  <p id=result></p>
+</body>
+</html>
+
