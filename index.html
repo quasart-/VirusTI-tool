@@ -3,7 +3,7 @@
 <head>
   <title>Virus TI Snow - Program Change Calculator<></title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style>
     html {
       font-family: Helvetica;
@@ -30,9 +30,10 @@
       var bank   = $('input:radio[name=bank]:checked').val();
       var page   = $('input:radio[name=page]:checked').val();
       var preset = $('input:radio[name=preset]:checked').val();
+      var first = ( $('#config-from-one').is(':checked') ) ? 1 : 0;
 
-      var bank_select = Math.floor(bank/2);
-      var program_change = (bank%2)*64 + page*8 + preset*1;
+      var bank_select = Math.floor(bank/2 + first);
+      var program_change = (bank%2)*64 + page*8 + preset*1 + first;
 
       $("#result").html(
         "Bank Select (CC#32): " + bank_select +
@@ -45,15 +46,6 @@
 <body>
   <h1>Virus TI Snow<br><small>Program Change Calculator</small></h1>
   <form>
-    <!--label><input type='radio' name='bank' value='8'></input></label>
-    <label><input type='radio' name='bank' value='9'></input></label>
-    <label><input type='radio' name='bank' value='10'></input></label>
-    <label><input type='radio' name='bank' value='11'></input></label>
-    <label><input type='radio' name='bank' value='12'></input></label>
-    <label><input type='radio' name='bank' value='13'></input></label>
-    <label><input type='radio' name='bank' value='14'></input></label>
-    <label><input type='radio' name='bank' value='15'></input></label>
-    <br/-->
     <label><input type='radio' name='bank' value='0'></input></label>
     <label><input type='radio' name='bank' value='1'></input></label>
     <label><input type='radio' name='bank' value='2'></input></label>
@@ -81,7 +73,11 @@
     <label><input type='radio' name='preset' value='6'></input></label>
     <label><input type='radio' name='preset' value='7'></input></label>
   </form>
+
   <p id=result></p>
+
+  <h3>Configuration:</h3>
+  <label><input type='checkbox' id='config-from-one'></input> MIDI values should start from one (instead of zero).</label>
 </body>
 </html>
 
